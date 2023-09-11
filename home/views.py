@@ -1,15 +1,14 @@
-from django.shortcuts import render, redirect, HttpResponse
-from maps.input_field_form import InputField
+from django.shortcuts import render, HttpResponse
+
 
 def home(request):
-    form = InputField()
-    return render(request, 'index.html', context={'form' : form})
+    return render(request, 'index.html')
+
 
 def test(request):
     print(request)
-    return HttpResponse("<script>alert('gand marao')</script>")
+    return HttpResponse("<script>alert('Working Fine')</script>")
+
 
 def not_found(request, exception):
     return render(request, '404.html')
-
-

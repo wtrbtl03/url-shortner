@@ -16,16 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path, include
-import maps.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include(('maps.urls', 'maps'), namespace='maps')),
     path('', include('home.urls')),
     re_path(r'create/?', include('home.urls')),
     re_path(r'new/?', include('home.urls')),
     re_path(r'home/?', include('home.urls')),
-    path('get_map/', maps.views.get_map),
     path('<map_str>/', include('maps.urls')),
+    path('tryit', include('home.urls')),
 ]
 
 handler404 = "home.views.not_found"
