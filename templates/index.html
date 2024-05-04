@@ -8,38 +8,22 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="{% static './script.js' %}"></script>
 </head>
 
 <body>
-    <script>
-        function foo(){
-            $.ajax({
-                data:$('#input_url'),
-                url: "{% url 'maps:get_short' %}",
-                type: "GET",
-                success: successFunc,
-                error: errorFunc,
-            });
-    
-            function successFunc(response){
-                document.getElementById("shortUrl").innerText = response.shortned_url      
-            }
-            function errorFunc(response){
-                alert("gadbad")
-            }
-        }
-    </script>
     <header>
         <h1 class="header-title">URL Shortener</h1>
     </header>
     <main>
+    <div id="shortenedUrl"></div>
         <section class="url-input">
             <h2 class="section-title">Shorten Your URL</h2>
             <!-- <form action = "/get_map/" method="post"> -->
             
                 {% csrf_token %}
                 <input type="text" name = "input_url" id="input_url" class="input-field" placeholder="Enter your long URL">
-                <button type = "submit" onclick="foo()" id="shortenButton" class="submit-button">GetShortLink!</button>
+                <button type = "submit" onclick="shortenUrl()" id="shortenButton" class="submit-button">GetShortLink!</button>
             <!-- </form> -->
         </section>
         <section class="shortened-url">

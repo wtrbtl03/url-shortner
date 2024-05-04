@@ -17,15 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path, include
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(('maps.urls', 'maps'), namespace='maps')),
     path('', include('home.urls')),
-    re_path(r'create/?', include('home.urls')),
-    re_path(r'new/?', include('home.urls')),
-    re_path(r'home/?', include('home.urls')),
-    path('<map_str>/', include('maps.urls')),
-    path('tryit', include('home.urls')),
+    path('get/', include('maps.urls')),
+    path('<str:map_str>/', include('maps.urls')),
 ]
 
 handler404 = "home.views.not_found"

@@ -30,8 +30,19 @@ def encode_url(url):
     return encoded_url
 
 
-def get_short(request):
-    url = fetch_input_url(request)
+# def get_short(request):
+#     url = fetch_input_url(request)
+#     hash = encode_url(url)[:5]
+#     domain_name = "localhost:8000"
+#     shortned_url = domain_name+'/'+hash
+#     new_document = {'map_of': url,
+#                     'map_to': hash}
+#     COLLECTION.insert_one(new_document)
+#     response = {'shortned_url': shortned_url}
+#     return JsonResponse(response)
+
+def get(request, long_url:str):
+    url = long_url
     hash = encode_url(url)[:5]
     domain_name = "localhost:8000"
     shortned_url = domain_name+'/'+hash

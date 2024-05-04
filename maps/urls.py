@@ -20,5 +20,7 @@ from . import resolve, views
 
 urlpatterns = [
     path('', resolve.resolve),
-    path('get_short', views.get_short, name='get_short'),
+    path('<path:long_url>', views.get, name='get'),
+
+    # path('get_short', views.get_short, name='get_short'),
 ]
